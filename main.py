@@ -552,6 +552,36 @@ def export_jobs_excel(jobs, file_path):
         ])
     workbook.save(file_path)
 
+def export_all_jobs_excel(jobs, file_path):
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "All Jobs"
+    sheet.append([
+        "Title",
+        "Company",
+        "Location",
+        "Stipend",
+        "Paid",
+        "Source",
+        "Link",
+        "Tags",
+        "Description",
+    ])
+    for job in jobs:
+        stipend = job.get("stipend", "")
+        sheet.append([
+            clean_text(job.get("title", "")),
+            clean_text(job.get("company", "")),
+            clean_text(job.get("location", "")),
+            clean_text(stipend) or "Not listed",
+            job_paid_status(stipend),
+            clean_text(job.get("source", "")),
+            job.get("link", ""),
+            clean_text(job.get("tags", "")),
+            clean_text(job.get("description", "")),
+        ])
+    workbook.save(file_path)
+
 # ─── Main ───────────────────────────────────────────────
 def main():
     seen = load_seen()
@@ -605,6 +635,13 @@ def main():
         export_jobs_excel(relevant_jobs, export_path)
         send_telegram_document(export_path, "Full relevant jobs list (Excel)")
         print(f"Exported {len(relevant_jobs)} relevant jobs to {export_path}")
+
+    if all_jobs:
+        timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
+        export_all_path = f"jobs-all-{timestamp}.xlsx"
+        export_all_jobs_excel(all_jobs, export_all_path)
+        send_telegram_document(export_all_path, "All scraped jobs (Excel)")
+        print(f"Exported {len(all_jobs)} total jobs to {export_all_path}")
     
     save_seen(seen)
 
