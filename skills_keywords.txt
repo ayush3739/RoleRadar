@@ -1,0 +1,52 @@
+python
+javascript
+c++
+c
+html
+css
+flask
+fastapi
+sqlalchemy
+bootstrap
+jinja2
+rest api
+wtforms
+pydantic
+langchain
+langgraph
+openai api
+groq
+hugging face
+transformers
+numpy
+pandas
+qdrant
+sqlite
+postgresql
+mongodb
+redis
+docker
+git
+selenium
+beautifulsoup
+api
+rest
+llm
+rag
+ai agents
+machine learning
+data science
+nlp
+prompt engineering
+amadeus api
+nutritionix api
+twilio
+spotify api
+smtp
+sheety api
+google sheets api
+data structures
+algorithms
+web scraping
+automation
+oop
