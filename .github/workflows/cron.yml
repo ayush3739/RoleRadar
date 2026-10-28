@@ -1,4 +1,4 @@
-name: Job Scraper Cron
+name: Role Radar — Daily Internship Scan
 
 on:
   schedule:
